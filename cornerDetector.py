@@ -3,14 +3,20 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def corner_detector(filename, draw=True):
+def corner_detector(filename, draw=True, array=None):
 
-    # Reading image
-    img2 = cv2.imread(filename, cv2.IMREAD_COLOR)
+    if array is None:
+        # Reading image
+        img2 = cv2.imread(filename, cv2.IMREAD_COLOR)
 
-    # Reading same image in another variable and
-    # converting to gray scale.
-    img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+        # Reading same image in another variable and
+        # converting to gray scale.
+        img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
+    else:
+        img2 = array
+
+        img = cv2.cvtColor(img2, cv2.COLOR_RGB2GRAY)
+
 
     # Converting image to a binary image
     # (black and white only image).
@@ -40,6 +46,7 @@ def corner_detector(filename, draw=True):
         area = cv2.contourArea(cnt)
 
         # Shortlisting the regions based on there area.
+        # TODO: Change bounds
         if area > (44000 + 40 * 1280) and area < 1280 * 593:
             approx = cv2.approxPolyDP(cnt,
                                       0.009 * cv2.arcLength(cnt, True), True)

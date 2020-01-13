@@ -3,7 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def corner_detector(filename, draw=True, array=None):
+def corner_detector(filename, draw=True, array=None, count=0):
 
     if array is None:
         # Reading image
@@ -17,7 +17,6 @@ def corner_detector(filename, draw=True, array=None):
 
         img = cv2.cvtColor(img2, cv2.COLOR_RGB2GRAY)
 
-
     # Converting image to a binary image
     # (black and white only image).
     _, threshold = cv2.threshold(img, 110, 255,
@@ -27,10 +26,10 @@ def corner_detector(filename, draw=True, array=None):
     threshold[677:720, 0:1280] = 0
     threshold[0:73, 0:1280] = 0
 
-    plt.figure()
-    plt.imshow(threshold)
-    plt.show()
-    plt.close()
+    #plt.figure()
+    #plt.imshow(threshold)
+    #plt.show()
+    #plt.close()
 
     # Detecting shapes in image by selecting region
     # with same colors or intensity.
@@ -75,13 +74,14 @@ def corner_detector(filename, draw=True, array=None):
                 targets = approx
 
             # Checking if image wants to be drawn
-            if draw:
+            if draw and (len(approx) == 4 or len(approx) == 8):
                 cv2.drawContours(img2, [approx], 0, (0, 0, 255), 5)
                 for i in approx:
                     cv2.circle(img2, (i[0][0], i[0][1]), 3, 255, -1)
 
                 # Showing the image along with outlined box.
                 plt.imshow(img2)
-                plt.show()
+                #plt.savefig("{}".format(count))
+                plt.close()
 
     return targets, case

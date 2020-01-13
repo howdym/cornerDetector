@@ -45,7 +45,6 @@ def corner_detector(filename, draw=True, array=None, count=0):
         area = cv2.contourArea(cnt)
 
         # Shortlisting the regions based on there area.
-        # TODO: Change bounds
         if area > (44000 + 40 * 1280) and area < 1280 * 593:
             approx = cv2.approxPolyDP(cnt,
                                       0.009 * cv2.arcLength(cnt, True), True)

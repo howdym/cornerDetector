@@ -19,7 +19,9 @@ while cap.isOpened():
 
     corner, case = cornerDetector.corner_detector(filename=None, draw=True, array=frame, count=count)
 
-# TODO: look through one video. Find out how to tighten bounds to narrow down analysis.
+# TODO: Connect object detection to video parsing. If current page fails, skip loop. If next page is true, set boolean
+#  variable to true until next page is false. Increase page count when next page is true and boolean
+#  variable is false then change variable status.
 
 cap.release()
 cv2.destroyAllWindows()  # destroy all the opened windows

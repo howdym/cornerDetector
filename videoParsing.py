@@ -31,7 +31,7 @@ while cap.isOpened():
         print("This is a typical frame. No switching pages was detected.")
         # frame = cv2.resize(frame, (800, 450))
         # cv2.imshow('Frame', frame)
-        # if cv2.waitKey(10000) & 0xFF == ord('q'):
+        # if cv2.waitKey(0) & 0xFF == ord('q'):
         #     cv2.destroyAllWindows()
 
     count = count + 1

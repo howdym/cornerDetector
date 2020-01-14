@@ -17,9 +17,10 @@ def template_helper(img, target):
     for pt in zip(*loc[::-1]):
         cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
 
-    plt.imshow(img_rgb)
-    #plt.show()
-    plt.close()
+    img_rgb = cv2.resize(img_rgb, (800, 450))
+    cv2.imshow('Frame', img_rgb)
+    if cv2.waitKey(10000) & 0xFF == ord('q'):
+        cv2.destroyAllWindows()
 
     return len(loc[0]) == 1 and len(loc[1]) == 1
 
@@ -31,7 +32,7 @@ def confirm_page(img):
     return template_helper(img, target)
 
 
-# Find out if person is on the page of interest
+# Find out if person moved to next problem
 def confirm_switch(img):
     img2 = cv2.imread("moving.png")
     target = img2[546:580, 941:997, :]

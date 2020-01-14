@@ -26,10 +26,10 @@ def corner_detector(filename, draw=True, array=None, count=0):
     threshold[677:720, 0:1280] = 0
     threshold[0:73, 0:1280] = 0
 
-    #plt.figure()
-    #plt.imshow(threshold)
-    #plt.show()
-    #plt.close()
+    # plt.figure()
+    # plt.imshow(threshold)
+    # plt.show()
+    # plt.close()
 
     # Detecting shapes in image by selecting region
     # with same colors or intensity.
@@ -78,9 +78,10 @@ def corner_detector(filename, draw=True, array=None, count=0):
                 for i in approx:
                     cv2.circle(img2, (i[0][0], i[0][1]), 3, 255, -1)
 
-                # Showing the image along with outlined box.
-                plt.imshow(img2)
-                #plt.savefig("{}".format(count))
-                plt.close()
+    # Showing the image along with outlined box.
+    img2 = cv2.resize(img2, (800, 450))
+    cv2.imshow('Frame', img2)
+    if cv2.waitKey(10000) & 0xFF == ord('q'):
+        cv2.destroyAllWindows()
 
     return targets, case

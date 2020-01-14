@@ -81,7 +81,7 @@ def corner_detector(filename, draw=True, array=None, count=0):
     # Showing the image along with outlined box.
     img2 = cv2.resize(img2, (800, 450))
     cv2.imshow('Frame', img2)
-    if cv2.waitKey(10000) & 0xFF == ord('q'):
+    if cv2.waitKey(0) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
 
     return targets, case

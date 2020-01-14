@@ -19,7 +19,7 @@ def template_helper(img, target):
 
     img_rgb = cv2.resize(img_rgb, (800, 450))
     cv2.imshow('Frame', img_rgb)
-    if cv2.waitKey(10000) & 0xFF == ord('q'):
+    if cv2.waitKey(0) & 0xFF == ord('q'):
         cv2.destroyAllWindows()
 
     return len(loc[0]) == 1 and len(loc[1]) == 1
